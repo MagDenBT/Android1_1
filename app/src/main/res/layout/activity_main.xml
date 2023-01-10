@@ -10,45 +10,37 @@
     android:id="@+id/toolbar_top"
     android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/anagram_text"
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_centerVertical="true"
-        android:layout_marginStart="72dp"
-        android:layout_marginTop="29dp"
-        android:layout_marginEnd="72dp"
-        android:gravity="center_horizontal|top"
-        android:text="@string/anagram_text_def"
-        android:textAppearance="@style/anagram_text_def"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/input_filter_layout" />
-
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.16" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/input_text_layout"
-        android:layout_width="315dp"
-        android:layout_height="98dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="117dp"
-        android:layout_marginEnd="30dp"
         android:alpha="0.48"
         android:background="@drawable/input_text_filter_h"
         android:hint="@string/input_text_hint"
-        android:orientation="vertical"
+
+
         app:boxStrokeWidth="0dp"
         app:boxStrokeWidthFocused="0dp"
+        app:guidelineUseRtl="false"
         app:hintTextAppearance="@style/input_text_filter_layout_hint"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_default="percent"
+        app:layout_constraintHeight_percent="0.17"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="@+id/guideline"
+        app:layout_constraintWidth_default="percent"
+        app:layout_constraintWidth_percent="0.77">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/input_text"
@@ -58,25 +50,39 @@
             android:textColor="@color/black" />
     </com.google.android.material.textfield.TextInputLayout>
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf = "@+id/input_text_layout"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.345" />
+
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/input_filter_layout"
-        android:layout_width="315dp"
-        android:layout_height="98dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="13dp"
-        android:layout_marginEnd="30dp"
         android:alpha="0.48"
+
         android:background="@drawable/input_text_filter_h"
         android:hint="@string/input_filter_hint"
         app:boxStrokeWidth="0dp"
         app:boxStrokeWidthFocused="0dp"
         app:hintTextAppearance="@style/input_text_filter_layout_hint"
+
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_default="percent"
+        app:layout_constraintHeight_percent="0.17"
         app:layout_constraintStart_toStartOf="parent"
+
+        app:layout_constraintTop_toTopOf="@+id/guideline2"
+        app:layout_constraintWidth_default="percent"
+        app:layout_constraintWidth_percent="0.77"
+
         app:layout_constraintTop_toBottomOf="@+id/input_text_layout">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -85,6 +91,31 @@
             android:layout_height="match_parent"
             android:textAppearance="@style/input_text_filter" />
     </com.google.android.material.textfield.TextInputLayout>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf = "@+id/input_filter_layout"
+        app:layout_constraintGuide_percent="0.56" />
+
+    <TextView
+        android:id="@+id/anagram_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+
+        android:gravity="center_horizontal|top"
+        android:text="@string/anagram_text_def"
+        android:textAppearance="@style/anagram_text_def"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+
+        app:layout_constraintTop_toTopOf="@+id/guideline3"
+        app:layout_constraintWidth_default="percent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 
