@@ -8,7 +8,7 @@ import android.text.TextWatcher;
 import android.widget.EditText;
 import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity implements TextWatcher{
+public class MainActivity extends AppCompatActivity implements TextWatcher {
     private TextView anagramTextView;
     private EditText inputEditText;
     private EditText filterEditText;
@@ -17,30 +17,12 @@ public class MainActivity extends AppCompatActivity implements TextWatcher{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        inputEditText = (EditText) findViewById(R.id.input_text);
-        filterEditText = (EditText) findViewById(R.id.input_filter);
+        inputEditText = findViewById(R.id.input_text);
+        filterEditText = findViewById(R.id.input_filter);
+        anagramTextView = findViewById(R.id.anagram_text);
 
-        TextWatcher tw = new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-                EditText filterEditText = (EditText) findViewById(R.id.input_filter);
-                anagramTextView.setText(AnagramCreator.calculateAnagram(inputEditText.getText().toString(), filterEditText.getText().toString().trim()));;
-            }
-        };
-        inputEditText.addTextChangedListener(tw);
-        filterEditText.addTextChangedListener(tw);
-
-        anagramTextView = (TextView) findViewById(R.id.anagram_text);
-        anagramTextView.addTextChangedListener(this);
-
+        inputEditText.addTextChangedListener(this);
+        filterEditText.addTextChangedListener(this);
     }
 
     @Override
@@ -55,15 +37,13 @@ public class MainActivity extends AppCompatActivity implements TextWatcher{
 
     @Override
     public void afterTextChanged(Editable editable) {
-        String textDef = getString(R.string.anagram_text_def);
-        String textNew = editable.toString();
-        if (textNew.contentEquals(textDef)) {
-            anagramTextView.setTextAppearance(R.style.anagram_text_def);
-        }else if(textNew.trim().isEmpty()) {
-            anagramTextView.setText(textDef);
-            anagramTextView.setTextAppearance(R.style.anagram_text_def);
-        }else{
+        String anagram = AnagramCreator.calculateAnagram(inputEditText.getText().toString(), filterEditText.getText().toString().trim());
+        if (!anagram.isEmpty()) {
             anagramTextView.setTextAppearance(R.style.anagram_text);
+            anagramTextView.setText(anagram);
+        } else {
+            anagramTextView.setTextAppearance(R.style.anagram_text_def);
+            anagramTextView.setText(getString(R.string.anagram_text_def));
         }
     }
 }
