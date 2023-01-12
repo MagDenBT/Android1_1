@@ -4,16 +4,14 @@ public class AnagramCreator {
 
     public static String calculateAnagram(String sourceText, String filter) {
 
-        //The original text cannot be changed, but its trimmed version is checked.
-        int textLength = sourceText.trim().length();
-        if (textLength == 0) {
+        if (sourceText.trim().length() == 0) {
             return "";
-        } else if (textLength == 1) {
-            return sourceText;
         }
+
         final char[] text = sourceText.toCharArray();
+        final int end = text.length - 1;
         int startIdx = -1;
-        for (int i = 0; i < sourceText.length(); i++) {
+        for (int i = 0; i <= end; i++) {
             if (startIdx == -1) {
                 if (Character.isSpaceChar(sourceText.charAt(i))) {
                     continue;
@@ -22,11 +20,9 @@ public class AnagramCreator {
                 }
             }
 
-            if (Character.isSpaceChar(sourceText.charAt(i))) {
+            if (i == end || Character.isSpaceChar(sourceText.charAt(i))) {
                 reverse(text, startIdx, i, filter);
                 startIdx = -1;
-            } else if (i == sourceText.length() - 1) {
-                reverse(text, startIdx, i, filter);
             }
         }
         return new String(text);
