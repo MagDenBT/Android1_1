@@ -26,7 +26,7 @@ public class AnagramCreator {
     }
 
     private static void reverse(char[] word, int startIdx, int endIdx, String filter) {
-        for (; startIdx < endIdx; endIdx--, startIdx++) {
+        while (startIdx < endIdx) {
             if (!Character.isAlphabetic(word[startIdx]) || filter.indexOf(word[startIdx]) > -1) {
                 startIdx++;
             } else if (!Character.isAlphabetic(word[endIdx]) || filter.indexOf(word[endIdx]) > -1) {
@@ -35,6 +35,8 @@ public class AnagramCreator {
                 char tmp = word[startIdx];
                 word[startIdx] = word[endIdx];
                 word[endIdx] = tmp;
+                startIdx++;
+                endIdx--;
             }
         }
     }
