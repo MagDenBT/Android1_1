@@ -5,8 +5,9 @@ public class AnagramCreator {
     public static String calculateAnagram(String sourceText, String filter) {
         // The original text cannot be changed, but its trimmed version is checked.
         final char[] text = sourceText.trim().toCharArray();
+        final int end = text.length - 1;
         int startIdx = -1;
-        for (int i = 0; i < sourceText.length(); i++) {
+        for (int i = 0; i <= end; i++) {
             if (startIdx == -1) {
                 if (Character.isSpaceChar(sourceText.charAt(i))) {
                     continue;
@@ -15,11 +16,9 @@ public class AnagramCreator {
                 }
             }
 
-            if (Character.isSpaceChar(sourceText.charAt(i))) {
+            if (i == end || Character.isSpaceChar(sourceText.charAt(i))) {
                 reverse(text, startIdx, i, filter);
                 startIdx = -1;
-            } else if (i == sourceText.length() - 1) {
-                reverse(text, startIdx, i + 1, filter);
             }
         }
         return new String(text);
