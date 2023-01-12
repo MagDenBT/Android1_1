@@ -1,6 +1,10 @@
 package com.example.android1_1;
 
 
+import androidx.core.content.res.TypedArrayUtils;
+
+import java.util.Arrays;
+
 public class AnagramCreator {
 
     public static String calculateAnagram(String sourceText, String filter) {
@@ -18,7 +22,7 @@ public class AnagramCreator {
 
         for (int i = 0; i < sourceText.length(); i++) {
             if (startInd == -1) {
-                if (sourceText.charAt(i) != ' ') {
+                if (!Character.isSpaceChar(sourceText.charAt(i))) {
                     startInd = i;
                 } else {
                     result.append(sourceText.charAt(i));
@@ -26,7 +30,7 @@ public class AnagramCreator {
                 continue;
             }
 
-            if (sourceText.charAt(i) == ' ') {
+            if (Character.isSpaceChar(sourceText.charAt(i))) {
                 result.append(reverse(sourceText.substring(startInd, i), filter));
                 result.append(sourceText.charAt(i));
                 startInd = -1;
@@ -39,32 +43,28 @@ public class AnagramCreator {
 
     private static char[] reverse(String text, String filter) {
 
+        char[] result = text.toCharArray();
         int textLength = text.length();
-        char[] result = new char[textLength];
         boolean[] pass = new boolean[textLength];
 
-        for (int i = 0; i < text.length(); i++) {
-            char sym = text.charAt(i);
-            if (!Character.isAlphabetic(sym) || filter.indexOf(sym) > -1) {
-                result[i] = sym;
-                pass[i] = true;
-            }
-        }
+        int backward, toward;
+        for (backward = textLength - 1, toward = 0; toward < textLength; backward--, toward++) {
 
-        int endInd = textLength - 1;
-        for (int i = 0; i < text.length() && endInd >= 0; i++) {
-            char sym = text.charAt(endInd);
-
-            if (!Character.isAlphabetic(sym) || filter.contains(String.valueOf(sym))) {
-                endInd--;
-                i--;
+            char replSym = text.charAt(toward);
+            if (pass[toward] || !Character.isAlphabetic(replSym) || filter.indexOf(replSym) > -1) {
+                backward++; //reset iteration
                 continue;
             }
 
-            if (!pass[i]) {
-                result[i] = sym;
-                endInd--;
+            char sym = text.charAt(backward);
+            if (!Character.isAlphabetic(sym) || filter.indexOf(sym) > -1) {
+                pass[backward] = true;
+                toward--; //reset iteration
+                continue;
             }
+
+            result[toward] = sym;
+
         }
 
         return result;
