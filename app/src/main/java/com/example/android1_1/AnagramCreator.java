@@ -31,9 +31,9 @@ public class AnagramCreator {
 
     private static void reverse(char[] word, int startIdx, int endIdx, String filter) {
         while (startIdx < endIdx) {
-            if ((filter.trim().isEmpty() && !Character.isAlphabetic(word[startIdx])) || filter.indexOf(word[startIdx]) > -1) {
+            if (fitsFilter(filter, word[startIdx])){
                 startIdx++;
-            } else if ((filter.trim().isEmpty() && !Character.isAlphabetic(word[endIdx])) || filter.indexOf(word[endIdx]) > -1) {
+            }else if (fitsFilter(filter, word[startIdx])) {
                 endIdx--;
             } else {
                 char tmp = word[startIdx];
@@ -43,5 +43,8 @@ public class AnagramCreator {
                 endIdx--;
             }
         }
+    }
+    private static  boolean fitsFilter(String filter, char sym){
+        return (filter.trim().isEmpty() && !Character.isAlphabetic(sym)) || filter.indexOf(sym) > -1 ;
     }
 }
