@@ -4,7 +4,7 @@ public class AnagramCreator {
 
     public static String calculateAnagram(String sourceText, String filter) {
 
-        if (sourceText.trim().length() == 0) {
+        if (sourceText.trim().isEmpty()) {
             return "";
         }
 
@@ -21,7 +21,8 @@ public class AnagramCreator {
             }
 
             if (i == end || Character.isSpaceChar(sourceText.charAt(i))) {
-                reverse(text, startIdx, i, filter);
+                int endInd = i == end ? i : i - 1;
+                reverse(text, startIdx, endInd, filter);
                 startIdx = -1;
             }
         }
@@ -30,9 +31,9 @@ public class AnagramCreator {
 
     private static void reverse(char[] word, int startIdx, int endIdx, String filter) {
         while (startIdx < endIdx) {
-            if (!Character.isAlphabetic(word[startIdx]) || filter.indexOf(word[startIdx]) > -1) {
+            if ((filter.trim().isEmpty() && !Character.isAlphabetic(word[startIdx])) || filter.indexOf(word[startIdx]) > -1) {
                 startIdx++;
-            } else if (!Character.isAlphabetic(word[endIdx]) || filter.indexOf(word[endIdx]) > -1) {
+            } else if ((filter.trim().isEmpty() && !Character.isAlphabetic(word[endIdx])) || filter.indexOf(word[endIdx]) > -1) {
                 endIdx--;
             } else {
                 char tmp = word[startIdx];
