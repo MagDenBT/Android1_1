@@ -13,14 +13,14 @@ public class AnagramCreator {
         int startIdx = -1;
         for (int i = 0; i <= end; i++) {
             if (startIdx == -1) {
-                if (Character.isSpaceChar(sourceText.charAt(i))) {
+                if (Character.isSpaceChar(text[i])) {
                     continue;
                 } else {
                     startIdx = i;
                 }
             }
 
-            if (i == end || Character.isSpaceChar(sourceText.charAt(i))) {
+            if (i == end || Character.isSpaceChar(text[i])) {
                 int endInd = i == end ? i : i - 1;
                 reverse(text, startIdx, endInd, filter);
                 startIdx = -1;
