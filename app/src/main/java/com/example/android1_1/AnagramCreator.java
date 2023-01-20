@@ -29,11 +29,11 @@ public class AnagramCreator {
         return new String(text);
     }
 
-    private static void reverse(char[] word, int startIdx, int endIdx, String filter) {
+    protected static void reverse(char[] word, int startIdx, int endIdx, String filter) {
         while (startIdx < endIdx) {
             if (fitsFilter(filter, word[startIdx])){
                 startIdx++;
-            }else if (fitsFilter(filter, word[startIdx])) {
+            }else if (fitsFilter(filter, word[endIdx])) {
                 endIdx--;
             } else {
                 char tmp = word[startIdx];
