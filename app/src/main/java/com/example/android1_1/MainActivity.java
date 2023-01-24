@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity implements TextWatcher {
 
     @Override
     public void afterTextChanged(Editable editable) {
-        String anagram = AnagramCreator.calculateAnagram(
+        String anagram = AnagramCreator.getAnagram(
                 inputEditText.getText().toString(), filterEditText.getText().toString().trim()
         );
         if (anagram.isEmpty()) {
