@@ -6,6 +6,7 @@ import org.junit.Test;
 
 
 public class AnagramClassTest {
+
     @Test(timeout = 10000)
     public void reverseWithoutFilterOnlyAlphabeticIsCorrect() {
         char[] sample = "247".toCharArray();
@@ -94,5 +95,12 @@ public class AnagramClassTest {
         assertEquals(expected, AnagramCreator.calculateAnagram("", ""));
         assertEquals(expected, AnagramCreator.calculateAnagram(" ", ""));
         assertEquals(expected,  AnagramCreator.calculateAnagram("   ", ""));
+    }
+
+    @Test(timeout = 10000)
+    public void calculateAnagramWithNulls(){
+        assertEquals("",  AnagramCreator.calculateAnagram("Foxminded cool 24/7", null));
+        assertEquals("", AnagramCreator.calculateAnagram(null, "xl"));
+        assertEquals("",  AnagramCreator.calculateAnagram(null, null));
     }
 }

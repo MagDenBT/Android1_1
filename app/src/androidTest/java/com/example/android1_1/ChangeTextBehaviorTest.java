@@ -5,6 +5,7 @@ import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
 import static androidx.test.espresso.action.ViewActions.replaceText;
 import static androidx.test.espresso.action.ViewActions.typeText;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
+import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static org.junit.Assert.assertEquals;
@@ -49,6 +50,13 @@ public class ChangeTextBehaviorTest {
     }
 
     @Test
+    public void allViewsIsDisplayed() {
+        onView(withId(R.id.input_text)).check(matches(isDisplayed()));
+        onView(withId(R.id.input_filter)).check(matches(isDisplayed()));
+        onView(withId(R.id.anagram_text)).check(matches(isDisplayed()));
+    }
+
+    @Test
     public void typeInputAndFilterText() {
         onView(withId((R.id.input_text))).perform(typeText(STRING_ANAGRAM), closeSoftKeyboard());
         onView(withId(R.id.input_filter)).perform(typeText(STRING_FILTER), closeSoftKeyboard());
@@ -67,4 +75,5 @@ public class ChangeTextBehaviorTest {
         onView(withId(R.id.anagram_text)).check(matches(withText(getResourceString(R.string.anagram_text_def))));
 
     }
+
 }
