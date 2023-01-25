@@ -4,11 +4,11 @@ import android.util.Log;
 
 public class AnagramCreator {
 
-    public static String getAnagram(String sourceText, String filter) {
+    public static String getAnagramOrNull(String sourceText, String filter) {
 
         if (sourceText == null || filter == null) {
             Log.e(AnagramCreator.class.getSimpleName(), "Null value received");
-            return "";
+            return null;
         } else if (sourceText.trim().isEmpty()) {
             return "";
         }

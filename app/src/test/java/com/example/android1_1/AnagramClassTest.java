@@ -1,6 +1,7 @@
 package com.example.android1_1;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
 import org.junit.Test;
 
@@ -68,39 +69,39 @@ public class AnagramClassTest {
     }
 
     @Test(timeout = 10000)
-    public void calculateAnagramWithTextWithoutFilter(){
-        assertEquals("dednimxoF looc 24/7",  AnagramCreator.getAnagram("Foxminded cool 24/7", ""));
-        assertEquals("dcba hgfe", AnagramCreator.getAnagram("abcd efgh", ""));
-        assertEquals("d1cba hgf!e",  AnagramCreator.getAnagram("a1bcd efg!h", ""));
+    public void getAnagramOrNullWithTextWithoutFilter(){
+        assertEquals("dednimxoF looc 24/7",  AnagramCreator.getAnagramOrNull("Foxminded cool 24/7", ""));
+        assertEquals("dcba hgfe", AnagramCreator.getAnagramOrNull("abcd efgh", ""));
+        assertEquals("d1cba hgf!e",  AnagramCreator.getAnagramOrNull("a1bcd efg!h", ""));
     }
 
     @Test(timeout = 10000)
-    public void calculateAnagramWithTextWithoutFilterWithExtraSpaces(){
-        assertEquals(" dednimxoF looc   24/7  ",   AnagramCreator.getAnagram(" Foxminded cool   24/7  ", ""));
-        assertEquals("   dcba hgfe",  AnagramCreator.getAnagram("   abcd efgh", ""));
-        assertEquals("d1cba   hgf!e", AnagramCreator.getAnagram("a1bcd   efg!h", ""));
+    public void getAnagramOrNullWithTextWithoutFilterWithExtraSpaces(){
+        assertEquals(" dednimxoF looc   24/7  ",   AnagramCreator.getAnagramOrNull(" Foxminded cool   24/7  ", ""));
+        assertEquals("   dcba hgfe",  AnagramCreator.getAnagramOrNull("   abcd efgh", ""));
+        assertEquals("d1cba   hgf!e", AnagramCreator.getAnagramOrNull("a1bcd   efg!h", ""));
     }
 
     @Test(timeout = 10000)
-    public void calculateAnagramWithTextWithFilter(){
+    public void getAnagramOrNullWithTextWithFilter(){
         String filter = "xl";
-        assertEquals("dexdnimoF oocl 7/42", AnagramCreator.getAnagram("Foxminded cool 24/7", filter));
-        assertEquals("dcba hgfe",     AnagramCreator.getAnagram("abcd efgh", filter));
-        assertEquals("dcb1a hgfle", AnagramCreator.getAnagram("a1bcd efglh", filter));
+        assertEquals("dexdnimoF oocl 7/42", AnagramCreator.getAnagramOrNull("Foxminded cool 24/7", filter));
+        assertEquals("dcba hgfe",     AnagramCreator.getAnagramOrNull("abcd efgh", filter));
+        assertEquals("dcb1a hgfle", AnagramCreator.getAnagramOrNull("a1bcd efglh", filter));
     }
 
     @Test(timeout = 10000)
-    public void calculateAnagramTextIsSpacesOrEmpty(){
+    public void getAnagramOrNullTextIsSpacesOrEmpty(){
         String expected = "";
-        assertEquals(expected, AnagramCreator.getAnagram("", ""));
-        assertEquals(expected, AnagramCreator.getAnagram(" ", ""));
-        assertEquals(expected,  AnagramCreator.getAnagram("   ", ""));
+        assertEquals(expected, AnagramCreator.getAnagramOrNull("", ""));
+        assertEquals(expected, AnagramCreator.getAnagramOrNull(" ", ""));
+        assertEquals(expected,  AnagramCreator.getAnagramOrNull("   ", ""));
     }
 
     @Test(timeout = 10000)
-    public void calculateAnagramWithNulls(){
-        assertEquals("",  AnagramCreator.getAnagram("Foxminded cool 24/7", null));
-        assertEquals("", AnagramCreator.getAnagram(null, "xl"));
-        assertEquals("",  AnagramCreator.getAnagram(null, null));
+    public void getAnagramOrNullWithNulls(){
+        assertNull(AnagramCreator.getAnagramOrNull("Foxminded cool 24/7", null));
+        assertNull(AnagramCreator.getAnagramOrNull(null, "xl"));
+        assertNull(AnagramCreator.getAnagramOrNull(null, null));
     }
 }
