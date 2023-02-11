@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Task 1</string>
+    <string name="app_name">Anagramer</string>
     <string name="anagram_text_def">Here must be your anagram</string>
     <string name="input_text_hint">Enter text for anagram</string>
     <string name="input_filter_hint">Enter symbols to ignore</string>
